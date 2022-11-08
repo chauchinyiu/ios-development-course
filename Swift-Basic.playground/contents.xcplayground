@@ -3,5 +3,8 @@
     <pages>
         <page name='Simple Values'/>
         <page name='Control Flow'/>
+        <page name='Functions And Closures'/>
+        <page name='Class, Struct, enum'/>
+        <page name='Protocols and Extensions'/>
     </pages>
 </playground>

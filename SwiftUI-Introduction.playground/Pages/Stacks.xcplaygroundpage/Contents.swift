@@ -7,7 +7,6 @@ struct ContentView: View {
             HStack{
                 Text("hello world")
             }
-//            .frame(width: 600, height: 200, alignment: .center)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.red)
             

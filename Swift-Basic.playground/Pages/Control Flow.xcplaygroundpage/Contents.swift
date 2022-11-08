@@ -1,8 +1,8 @@
-//: [Previous](@previous)
+//: ## Control Flow + Optional value
 
 import Foundation
 
-//: if else statement
+//: ###if else statement
 let individualScores = [75, 43, 99, 87, 12]
 var teamScore = 0
 for score in individualScores {
@@ -15,7 +15,7 @@ for score in individualScores {
 print(teamScore)
 
 
-//: guard statement
+//: ###guard statement
 
 let ages = ["ben":10, "amy": 24, "david": 15, "simon": 19]
 
@@ -30,7 +30,7 @@ for name in ages.keys {
 }
 
  
-//: switch statement
+//: ###switch statement
 let vegetable = "red pepper"
 switch vegetable {
     case "celery":
@@ -44,6 +44,25 @@ switch vegetable {
 }
 
 
+//: ### handling optional value
+var optionalName: String? = "John Appleseed"
+ 
+//: force it with (!)
+var greeting = "Hello, \(optionalName!)"
+ 
+//: check if exist
+if let name = optionalName {
+    greeting = "Hello, \(name)"
+}
+
+// guard if it exists
+guard let name = optionalName else {
+    throw NSError()
+}
+greeting = "Hello, \(name)"
+
+
+
 /*:
  Experiment:
 
@@ -53,3 +72,10 @@ switch vegetable {
  answer[i] == "Buzz" if i is divisible by 5.
  answer[i] == i (as a string) if none of the above conditions are true.
  */
+
+
+func fizzbuzz(_ inputArray : [Int]) -> [String]? {
+    
+    //your implementation
+    return nil
+}
