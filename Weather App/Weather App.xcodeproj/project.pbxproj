@@ -24,6 +24,7 @@
 		1F006734297386B0000E42CB /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F006722296F0454000E42CB /* WeatherViewModel.swift */; };
 		1F006735297386B6000E42CB /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0067282970A272000E42CB /* WeatherModel.swift */; };
 		1F0067362973874B000E42CB /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F006720296F03D4000E42CB /* WeatherService.swift */; };
+		1F006738297463B0000E42CB /* MockFailedWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F006737297463B0000E42CB /* MockFailedWeatherService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		1F0067282970A272000E42CB /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		1F00672F297384CE000E42CB /* WeatherFetchingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherFetchingProtocol.swift; sourceTree = "<group>"; };
 		1F0067322973864D000E42CB /* MockWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeatherService.swift; sourceTree = "<group>"; };
+		1F006737297463B0000E42CB /* MockFailedWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFailedWeatherService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			children = (
 				1F006707296F032B000E42CB /* Weather_AppTests.swift */,
 				1F0067322973864D000E42CB /* MockWeatherService.swift */,
+				1F006737297463B0000E42CB /* MockFailedWeatherService.swift */,
 			);
 			path = "Weather AppTests";
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				1F0067312973863E000E42CB /* WeatherFetchingProtocol.swift in Sources */,
 				1F006708296F032B000E42CB /* Weather_AppTests.swift in Sources */,
 				1F0067362973874B000E42CB /* WeatherService.swift in Sources */,
+				1F006738297463B0000E42CB /* MockFailedWeatherService.swift in Sources */,
 				1F006735297386B6000E42CB /* WeatherModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

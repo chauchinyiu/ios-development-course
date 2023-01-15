@@ -18,12 +18,34 @@ final class Weather_AppTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func test_weatherLoaded_temperature() async throws {
+    func test_weather_temperature() async throws {
         let mock = MockWeatherSerice()
-        let weatherVm = WeatherViewModel(weatherFetching: mock)
+        let weatherVM = WeatherViewModel(weatherFetching: mock)
 
-        await weatherVm.weather(location: "london")
+        await weatherVM.weather(location: "london")
 
-        XCTAssertEqual(weatherVm.temperature, "9.4°C")
+        XCTAssertEqual(weatherVM.temperature, "9.4°C")
+    }
+    
+    
+    func test_error_nodatafound() async throws {
+        let mock = MockNoDataFailedWeatherSerice()
+        let weatherVM = WeatherViewModel(weatherFetching: mock)
+        await weatherVM.weather(location: "london")
+        XCTAssertEqual(weatherVM.error ,  ServiceError.noDataFound)
+    }
+    
+    func test_error_urlfailed() async throws {
+        let mock = MockURLFailedWeatherSerice()
+        let weatherVM = WeatherViewModel(weatherFetching: mock)
+        await weatherVM.weather(location: "london")
+        XCTAssertEqual(weatherVM.error ,  ServiceError.urlFailed)
+    }
+    
+    func test_error_decodeFailed() async throws {
+        let mock = MockJSONFailedWeatherSerice()
+        let weatherVM = WeatherViewModel(weatherFetching: mock)
+        await weatherVM.weather(location: "london")
+        XCTAssertEqual(weatherVM.error ,  ServiceError.decodeError)
     }
 }

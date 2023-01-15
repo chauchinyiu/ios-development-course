@@ -17,7 +17,8 @@ let implicitDouble = 70.0
 let explicitDouble: Double = 70
 //: Experiment 2: create a number = 10 and get sum of implicitDouble + number , see what problem you get? and how you fix it?
 //try it here:
-
+let number = 10
+let answer = implicitDouble + Double(number)
 
 
 //: ### String operation

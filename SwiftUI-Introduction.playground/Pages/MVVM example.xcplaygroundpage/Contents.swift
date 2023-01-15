@@ -112,6 +112,10 @@ struct ContentView: View {
                     .padding()
                     .background(Color.blue)
                     .cornerRadius(20)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        print("Show address for \(user.firstName) :\(user.address) "  )
+                    }
                 }
             }
 

@@ -14,8 +14,9 @@ import CoreFoundation
 class WeatherViewModel: ObservableObject {
     private var weatherService: WeatherFetching
     @Published private var weatherModel: WeatherModel?
-    var city : String?
-    @Published var isLoading: Bool = false
+    @Published private(set) var isLoading: Bool = false
+    
+    
     var error : ServiceError?
     var location: String? {
         get { weatherModel?.locationName}
@@ -75,6 +76,7 @@ class WeatherViewModel: ObservableObject {
             }
         } catch {
             print("Something else wrong")
+          
         }
         isLoading = false
        

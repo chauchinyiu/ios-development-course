@@ -13,16 +13,19 @@ struct ContentView: View {
             Circle()
                 .frame(width: 100.0, height: 100.0)
                 .foregroundColor(Color.yellow)
+            
                 
             Text("SwiftUI for iOS 16")
                 .font(.title)
                 .fontWeight(.bold)
-            Text("it-e 3 days courses")
+             
+            Text("it-e courses")
             
             
             Button(/*@START_MENU_TOKEN@*/"Button"/*@END_MENU_TOKEN@*/) {
                 print("click")
             }
+          
         }
         .padding(.all)
         .background(Color.purple)

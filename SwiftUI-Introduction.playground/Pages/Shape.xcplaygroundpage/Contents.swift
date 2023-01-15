@@ -17,7 +17,7 @@ struct ContentView: View {
                 .foregroundColor(.blue)
                 .padding(EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 15))
                 
- 
+          
             
             RoundedRectangle(cornerRadius: 30, style: .continuous)
                 .fill(Color.red)

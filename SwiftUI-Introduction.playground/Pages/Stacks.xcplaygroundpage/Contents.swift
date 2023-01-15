@@ -7,20 +7,21 @@ struct ContentView: View {
             HStack{
                 Text("hello world")
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(width: 300, height: 200)
             .background(Color.red)
             
             HStack{
                 Text("hello world")
             }
+            .frame(width: 300, height: 200)
             .background(Color.blue)
-            .frame(width: 600, height: 200, alignment: .center)
+           
             
             HStack{
                 Text("hello world")
             }
             .background(Color.green)
-            .frame(width: 600, height: 200, alignment: .center)
+            .frame(width: 300, height: 200)
             
         }.background(Color.gray)
         

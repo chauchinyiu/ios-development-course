@@ -20,20 +20,23 @@ struct ContentView: View {
     ]
     
     var body: some View {
-       
-            List(images) { image in
-                //playground problem
-                //Image("\($0)") should work in normal iOS development
-                HStack() {
-                    Image(uiImage: UIImage(named: "\(image.name).jpg")!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-
-                    Text(image.description)
+        ScrollView {
+            VStack(alignment: .leading) {
+                ForEach(images) { image in
+                    //playground problem
+                    //Image("\($0)") should work in normal iOS development
+                    HStack() {
+                        Image(uiImage: UIImage(named: "\(image.name).jpg")!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 200, height: 200)
+                        Text(image.description)
+                            .padding(20)
+                    }
                 }
             }
+        }.frame(width: 400, height: 600)
     }
-    
 }
 
  
