@@ -36,9 +36,7 @@ struct ContentView: View {
                 
             Text("Temperature = \(contentVM.temp)")
             contentVM.warningImage.font(.system(size: 144))
-            
-            
-          
+
         }
         
     }

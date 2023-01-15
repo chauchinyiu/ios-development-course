@@ -13,7 +13,7 @@
         <page name='Async-Await'/>
         <page name='Combine'/>
         <page name='URLSession Async-Await'/>
-        <page name='HTTPS-Requests'/>
+        <page name='MVVM example'/>
         <page name='Combine-Operators'/>
     </pages>
 </playground>

@@ -12,7 +12,7 @@ struct WeatherApp: App {
   
     var body: some Scene {
         WindowGroup {
-           WeatherView(weatherViewModel: WeatherViewModel())
+           WeatherView(weatherViewModel: WeatherViewModel(weatherFetching: WeatherService()))
         }
     }
 }

@@ -6,11 +6,8 @@
 //
 
 import SwiftUI
-struct Location: Identifiable {
-    let id = UUID()
-    let name: String
-}
 
+ 
 struct WeatherView: View {
     @ObservedObject var weatherViewModel: WeatherViewModel
     @State var citytext: String = ""
@@ -27,7 +24,7 @@ struct WeatherView: View {
                             .submitLabel(.search)
                             .onSubmit {
                                 Task {
-                                    await weatherViewModel.weather(city: citytext)
+                                    await weatherViewModel.weather(location: citytext)
                                 }
                             }
                     }
@@ -46,7 +43,7 @@ struct WeatherView: View {
                     Text(weatherViewModel.error?.errorDescription ?? "unknown error")
                 }
                 else {
-                    CityWeatherDetailView(weatherViewModel: weatherViewModel)
+                    WeatherDetailView(weatherViewModel: weatherViewModel)
                 }
             }
             Spacer()

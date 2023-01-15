@@ -10,12 +10,9 @@ import Combine
 import CoreLocation
 import CoreFoundation
 
-protocol WeatherFetching {
-    func fetchCurrentWeather(latitude: CLLocationDegrees,
-                             longitude: CLLocationDegrees) async throws -> WeatherRawData
-}
 
 class WeatherViewModel: ObservableObject {
+    private var weatherService: WeatherFetching
     @Published private var weatherModel: WeatherModel?
     var city : String?
     @Published var isLoading: Bool = false
@@ -24,6 +21,10 @@ class WeatherViewModel: ObservableObject {
         get { weatherModel?.locationName}
     }
     
+    init(weatherFetching: WeatherFetching) {
+        weatherService = weatherFetching
+    }
+         
     var weatherMain: String? {
         get { weatherModel?.weatherName}
     }
@@ -62,11 +63,11 @@ class WeatherViewModel: ObservableObject {
     }
  
     @MainActor
-    func weather(city: String) async {
+    func weather(location: String) async {
         isLoading = true
         error = nil
         do {
-            let result = try await WeatherService.getCurrentWeather(city:city)
+            let result = try await self.weatherService.getCurrentWeather(location: location)
             if case .success(let rawWeather) = result {
                 weatherModel = WeatherModel(data: rawWeather)
             }else if case .failure(let err) = result {

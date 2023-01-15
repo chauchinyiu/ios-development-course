@@ -4,10 +4,10 @@ import SwiftUI
 import Foundation
 import PlaygroundSupport
 
-
-//TODO: let's GET the data from here https://dummyjson.com/users
-
-
+/*:
+   Step 1: Get the data from here https://dummyjson.com/users
+*/
+ 
 struct Users : Decodable {
     var users: [User]
     
@@ -24,12 +24,9 @@ struct Users : Decodable {
             var address: String
         }
     }
-}
-
-class ContentViewModel: ObservableObject {
-    @Published var users: Users = Users(users: [])
-
-    func getUsers() {
+ 
+    
+    func fetch(completion: @escaping (Result<Users, Error>) -> Void) {
         guard let url = URL(string: "https://dummyjson.com/users") else { fatalError("Missing URL") }
 
         let urlRequest = URLRequest(url: url)
@@ -37,7 +34,7 @@ class ContentViewModel: ObservableObject {
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 print("Request error: ", error)
-                return
+                completion(.failure(error))
             }
 
             guard let response = response as? HTTPURLResponse else { return }
@@ -47,9 +44,11 @@ class ContentViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     do {
                         let decodedUsers = try JSONDecoder().decode(Users.self, from: data)
-                        self.users = decodedUsers
+                          
+                        completion(.success(decodedUsers))
                     } catch let error {
                         print("Error decoding: ", error)
+                        completion(.failure(error))
                     }
                 }
             }
@@ -57,8 +56,35 @@ class ContentViewModel: ObservableObject {
 
         dataTask.resume()
     }
+
+   
 }
 
+/*:
+   Step 2: Get Users as an object
+*/
+
+class ContentViewModel: ObservableObject {
+    @Published var users: Users = Users(users: [])
+ 
+    func getUsers() {
+        users.fetch { result in
+            if case .success(let users) = result {
+                self.users = users
+            }
+            else if case .failure(let error) = result {
+                //TODO: error handling
+                print(error.localizedDescription)
+            }
+        }
+
+    }
+   
+}
+
+/*:
+   Step 3: Display Users
+*/
 struct ContentView: View {
     @ObservedObject var viewModel: ContentViewModel = ContentViewModel()
 

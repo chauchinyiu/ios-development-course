@@ -9,17 +9,26 @@ import Foundation
 import CoreLocation
 import FileProvider
 
-class WeatherService {
+class WeatherService : WeatherFetching {
  
-    static func getCurrentWeather(city: String) async throws -> Result<WeatherRawData, ServiceError>  {
-     
-        let city_clean = city.replacingOccurrences(of: " ", with: "%20")
-        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city_clean)&units=metric&appid=aee9d4df2adaf52155be159b7c546636") else {
+    func getCurrentWeather(location: String) async throws -> Result<WeatherRawData, ServiceError>  {
+ 
+        
+        var components = URLComponents()
+          components.scheme = "https"
+          components.host = "api.openweathermap.org"
+          components.path = "/data/2.5/weather"
+          components.queryItems = [
+              URLQueryItem(name: "q", value: location),
+              URLQueryItem(name: "units", value:"metric"),
+              URLQueryItem(name: "appid", value:"aee9d4df2adaf52155be159b7c546636"),
+          ]
+
+        guard let url = components.url else {
             return .failure(.urlFailed)
         }
-        
         // Call the API asynchronously and wait for the response
-        let urlRequest = URLRequest(url: url)
+        let urlRequest = URLRequest(url:url)
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
         
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {
@@ -29,7 +38,7 @@ class WeatherService {
         return loadJson(data)
     }
     
-    static func loadJson(_ data: Data) -> Result<WeatherRawData, ServiceError>  {
+    func loadJson(_ data: Data) -> Result<WeatherRawData, ServiceError>  {
          do {
              let weatherRawData = try JSONDecoder().decode(WeatherRawData.self, from: data)
              return .success(weatherRawData)
@@ -47,7 +56,7 @@ enum ServiceError: Error {
     var errorDescription: String {
         switch self {
             case .urlFailed:
-                return "URL is failed"
+                return "URL is invalid"
             case .noDataFound:
                 return "No data can be retrieved with this location"
             case .decodeError:
