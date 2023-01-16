@@ -8,7 +8,6 @@ protocol ShapeProtocol {
 }
 
 //: Classes, enumerations, and structures can all adopt protocols.
- 
 
 class Square : ShapeProtocol {
      var name: String = "Square"
@@ -56,6 +55,27 @@ extension Circle: ShapeProtocol {
 
  
 //: Experiment 2: add perimeter() -> Doubles in ShapeProtocol, make the Circle, Square , Triangle still confrm to the protocol
+protocol AdvanceShapeProtocol : ShapeProtocol {
+     func perimeter() -> Double
+}
 
+extension Circle: AdvanceShapeProtocol {
+    func perimeter() -> Double {
+        return  2 * Double.pi * radius
+    }
+}
 
+extension Triangle: AdvanceShapeProtocol {
+    func perimeter() -> Double {
+        return baseLength * height + sqrt(baseLength * baseLength + height * height)
+    }
+}
 
+extension Square: AdvanceShapeProtocol {
+    func perimeter() -> Double {
+        return sideLength * 4
+    }
+}
+
+let dShape : AdvanceShapeProtocol = Circle()
+print("perimeter : \(dShape.perimeter())")

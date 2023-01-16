@@ -20,7 +20,7 @@ struct ContentView: View {
     ]
     
     var body: some View {
-        ScrollView {
+        ScrollView{
             VStack(alignment: .leading) {
                 ForEach(images) { image in
                     //playground problem
@@ -35,7 +35,8 @@ struct ContentView: View {
                     }
                 }
             }
-        }.frame(width: 400, height: 600)
+        }
+         .frame(width: 400, height: 600)
     }
 }
 

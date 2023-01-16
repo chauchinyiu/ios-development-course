@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol WeatherFetching {
+protocol WeatherServiceProtocol {
     func getCurrentWeather(location: String) async throws -> Result<WeatherRawData, ServiceError>
 }

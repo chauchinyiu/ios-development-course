@@ -12,7 +12,7 @@ import CoreFoundation
 
 
 class WeatherViewModel: ObservableObject {
-    private var weatherService: WeatherFetching
+    private var weatherService: WeatherServiceProtocol
     @Published private var weatherModel: WeatherModel?
     @Published private(set) var isLoading: Bool = false
     
@@ -22,8 +22,8 @@ class WeatherViewModel: ObservableObject {
         get { weatherModel?.locationName}
     }
     
-    init(weatherFetching: WeatherFetching) {
-        weatherService = weatherFetching
+    init(service: WeatherServiceProtocol) {
+        weatherService = service
     }
          
     var weatherMain: String? {
@@ -79,8 +79,7 @@ class WeatherViewModel: ObservableObject {
           
         }
         isLoading = false
-       
-       
+ 
     }
 }
  

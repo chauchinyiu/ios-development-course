@@ -71,6 +71,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F222984297540BE00156DE1 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		1F6D6DE329101E600095FE56 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +101,7 @@
 		1F6D6DEE29101E600095FE56 /* SwiftUI-Course */ = {
 			isa = PBXGroup;
 			children = (
+				1F222984297540BE00156DE1 /* utils */,
 				1F6D6DEF29101E600095FE56 /* SwiftUI_CourseApp.swift */,
 				1F6D6DF129101E600095FE56 /* ContentView.swift */,
 				1F6D6DF329101E630095FE56 /* Assets.xcassets */,

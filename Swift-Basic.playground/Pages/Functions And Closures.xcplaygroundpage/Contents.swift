@@ -9,7 +9,7 @@ func greet(person: String, day: String) -> String {
     return "Hello \(person), today is \(day)."
 }
 
-greet(person: "Bob", day: "Tuesday")
+print(greet(person: "Bob", day: "Tuesday"))
 
 
 func greet(_ person: String, on day: String) -> String {
@@ -38,8 +38,9 @@ let statistics = calculateStatistics(scores: [5, 3, 100, 3, 9])
 print(statistics.sum)
 print(statistics.2)
 print(statistics.max)
+print(statistics.max + statistics.max)
 
-//: ### nested function
+
 func bigFunction(_ input: Int) -> Int {
     var result = input
     
@@ -86,11 +87,12 @@ let sayHello = { (name: String) -> String in
     return "Hey \(name)!"
 }
 print("abc")
+sayHello("tom")
  
 
 
 //: we want to pass a function in a function
-
+//var numbers = [20, 19, 7, 12]
 func multiply3(number: Int) -> Int {
     return number * 3
 }
@@ -107,9 +109,14 @@ print(a==b)
 //: Experiment 1:
 //: Rewrite the closure to return zero for all odd numbers.
 //:
-
+numbers = [20, 19, 7, 12]
 let mappedNumbers = numbers.map({ number in
-    number * 3 })
+    if number % 2 == 1 {
+        return 0
+    }
+    return number * 3
+    }
+)
 
 print(mappedNumbers)
 
@@ -139,8 +146,17 @@ print(captainFirstTeam)
 /*: Directly pass a closure into the sorted function i.e. sorted({ name1, name2 in //this is your implementation })
     to sort in alphabetical descending order. However, Captain name still in the first place i.e. Susan still in first of place.
  */
+func captainFirstSortedDescending(name1: String, name2: String) -> Bool {
+    if name1 == "Susan" {
+        return true
+    } else if name2 == "Susan" {
+        return false
+    }
 
+    return name1 > name2
+}
 
+print(team.sorted(by: captainFirstSortedDescending))
 
 
 

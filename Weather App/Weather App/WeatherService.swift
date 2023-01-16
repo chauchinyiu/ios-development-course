@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import FileProvider
 
-class WeatherService : WeatherFetching {
+class WeatherService : WeatherServiceProtocol {
  
     func getCurrentWeather(location: String) async throws -> Result<WeatherRawData, ServiceError>  {
  

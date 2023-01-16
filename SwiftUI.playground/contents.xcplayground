@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='ios' display-mode='raw' buildActiveScheme='true' importAppTypes='true'>
+<playground version='6.0' target-platform='ios' display-mode='rendered' buildActiveScheme='true' importAppTypes='true'>
     <pages>
         <page name='Stacks'/>
         <page name='Shape'/>
@@ -13,8 +13,9 @@
         <page name='URLSession '/>
         <page name='Async-Await'/>
         <page name='Combine'/>
+        <page name='Combine-Operators'/>
         <page name='URLSession Async-Await'/>
         <page name='MVVM example'/>
-        <page name='Combine-Operators'/>
+        <page name='Views'/>
     </pages>
 </playground>

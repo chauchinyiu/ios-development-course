@@ -20,8 +20,8 @@ struct ContentView: View {
             HStack{
                 Text("hello world")
             }
-            .background(Color.green)
             .frame(width: 300, height: 200)
+            .background(Color.green)
             
         }.background(Color.gray)
         

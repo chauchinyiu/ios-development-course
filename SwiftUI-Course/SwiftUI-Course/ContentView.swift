@@ -14,10 +14,14 @@ struct ContentView: View {
                 .frame(width: 100.0, height: 100.0)
                 .foregroundColor(Color.yellow)
             
-                
+          
             Text("SwiftUI for iOS 16")
                 .font(.title)
                 .fontWeight(.bold)
+                .multilineTextAlignment(.leading)
+                .padding(.leading)
+                .frame(width: 300.0)
+                .hoverEffect(/*@START_MENU_TOKEN@*/.automatic/*@END_MENU_TOKEN@*/)
              
             Text("it-e courses")
             

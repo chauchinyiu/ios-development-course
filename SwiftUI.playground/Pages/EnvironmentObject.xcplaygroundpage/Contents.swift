@@ -22,6 +22,14 @@ struct TemperatureDisplayView: View {
     }
 }
 
+struct NewView: View {
+    @EnvironmentObject var setting: TemperatureSetting
+
+    var body: some View {
+        Text("New Temperature = \(setting.temp)")
+    }
+}
+
 struct ContentView: View {
     var setting = TemperatureSetting()
 
@@ -29,6 +37,7 @@ struct ContentView: View {
         VStack {
             HeaterView()
             TemperatureDisplayView()
+            NewView()
         }
         .environmentObject(setting)
     }

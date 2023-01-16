@@ -16,16 +16,13 @@ class SquareClass {
     }
 }
 
-let testClass = SquareClass(sideLength: 5.0)
-testClass.area()
-testClass.simpleDescription()
 
 
 
 //: Use `struct` to create a structure. Structures support many of the same behaviors as classes, including methods and initializers. One of the most important differences between structures and classes is that structures are always copied when they’re passed around in your code, but classes are passed by reference.
 
 struct SquareStruct {
-    var sideLength: Double
+    let sideLength: Double
 
     init(sideLength: Double) {
        self.sideLength = sideLength
@@ -40,11 +37,16 @@ struct SquareStruct {
     }
 }
 
+
+
+
+let testClass = SquareClass(sideLength: 5.0)
+testClass.area()
+testClass.simpleDescription()
+
 var testStruct = SquareStruct(sideLength: 5.0)
 testStruct.area()
 testStruct.simpleDescription()
-
-
 
 //: Experiment 1:  how to make the follow codes work?
 testClass.sideLength = 4
@@ -52,9 +54,12 @@ testClass.area()
 testStruct.sideLength = 4
 testStruct.area()
 
+ 
+
+
 
 enum Shape {
-    case square, rectangle, circle, triangle
+    case square, rectangle, circle, triangle, hexagonal
     func name() -> String {
         switch self {
             case .square:
@@ -65,6 +70,8 @@ enum Shape {
                 return "Circle"
             case .triangle:
                 return "Triangle"
+            case .hexagonal:
+                return "hexgonal"
         }
     }
 }

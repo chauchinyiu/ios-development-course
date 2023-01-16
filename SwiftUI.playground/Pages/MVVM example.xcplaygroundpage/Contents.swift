@@ -64,9 +64,26 @@ struct Users : Decodable {
    Step 2: Get Users as an object
 */
 
+struct Products : Decodable {
+    var products: [Product]
+    
+    struct Product: Identifiable, Decodable {
+        var id: Int
+        var title: String
+        var price: Int
+        var thumbnail: String
+ 
+    }
+ 
+
+   
+}
+
+
+
 class ContentViewModel: ObservableObject {
     @Published var users: Users = Users(users: [])
- 
+    @Published var products: Products = Products(products:[])
     func getUsers() {
         users.fetch { result in
             if case .success(let users) = result {
@@ -77,7 +94,25 @@ class ContentViewModel: ObservableObject {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func getProducts() async {
+        
+               guard let url = URL(string: "https://dummyjson.com/products") else { fatalError("Missing URL") }
 
+               let urlRequest = URLRequest(url: url)
+
+               
+               do {
+                   let (data, _) =  try await URLSession.shared.data(from: url)
+                   if let decodedResponse = try? JSONDecoder().decode(Products.self, from: data) {
+                       self.products = decodedResponse
+                   }
+               }
+               catch
+               {
+                   fatalError("")
+               }
     }
    
 }
@@ -95,17 +130,30 @@ struct ContentView: View {
                 .bold()
 
             VStack(alignment: .leading) {
-                ForEach(viewModel.users.users) { user in
+                ForEach(viewModel.products.products) { product in
                     HStack(alignment:.top) {
-                        Text("\(user.id)")
+                        AsyncImage( url: URL(string: product.thumbnail),
+                                       content: { image in
+                                           image.resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(maxWidth: 30, maxHeight: 30)
+                                       },
+                                       placeholder: {
+                                           EmptyView()
+                                       }
+                                   )
+                            
+                           
+                            
+                        Text("\(product.id)")
 
                         VStack(alignment: .leading) {
-                            Text(user.firstName + " " + user.lastName)
+                            Text(product.title)
                                 .bold()
 
-                            Text(user.email.lowercased())
+                             Text("$ \(product.price)")
 
-                            Text(user.phone)
+                            
                         }
                     }
                     .frame(width: 300, alignment: .leading)
@@ -114,7 +162,7 @@ struct ContentView: View {
                     .cornerRadius(20)
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        print("Show address for \(user.firstName) :\(user.address) "  )
+                        print("Show price for \(product.title) :\(product.price) "  )
                     }
                 }
             }
@@ -122,8 +170,8 @@ struct ContentView: View {
         }
         .frame(width: 400, height:800, alignment: .center)
         .padding(.vertical)
-        .onAppear {
-            viewModel.getUsers()
+        .task {
+           await viewModel.getProducts()
         }
     }
 }

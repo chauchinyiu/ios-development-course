@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MockWeatherSerice: WeatherFetching {
+class MockWeatherSerice: WeatherServiceProtocol {
     private let jsonString = """
 {
     "weather": [

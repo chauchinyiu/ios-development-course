@@ -5,12 +5,12 @@ struct ContentView: View {
  
     var body: some View {
         VStack {
-            Image(systemName: "gear")
+            Image(systemName: "square.and.arrow.up")
                 .font(.system(size: 20, weight: .light))
                 .imageScale(.large)
             
             Image(systemName: "calendar.badge.plus")
-                .renderingMode(.original)
+                .symbolRenderingMode(.palette)
         
             
             Image(systemName: "j.square.fill")

@@ -7,21 +7,21 @@
 
 import Foundation
 
-class MockJSONFailedWeatherSerice: WeatherFetching {
+class MockJSONFailedWeatherSerice: WeatherServiceProtocol {
     
     func getCurrentWeather(location: String) async throws -> Result<WeatherRawData, ServiceError> {
         return .failure(.decodeError)
     }
 }
 
-class MockNoDataFailedWeatherSerice: WeatherFetching {
+class MockNoDataFailedWeatherSerice: WeatherServiceProtocol {
     
     func getCurrentWeather(location: String) async throws -> Result<WeatherRawData, ServiceError> {
         return .failure(.noDataFound)
     }
 }
 
-class MockURLFailedWeatherSerice: WeatherFetching {
+class MockURLFailedWeatherSerice: WeatherServiceProtocol {
     
     func getCurrentWeather(location: String) async throws -> Result<WeatherRawData, ServiceError> {
         return .failure(.urlFailed)
